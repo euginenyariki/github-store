@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RepoVault — Discover & save GitHub repositories</title>
+  <meta name="description" content="Search public GitHub repositories, keep a personal shortlist with notes, and export it — a small, local-first GitHub explorer." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="bar">
+    <a class="brand" href="#"><span>◈</span> RepoVault</a>
+    <div class="actions">
+      <button id="exportBtn" class="btn ghost">Export collection</button>
+      <button id="themeBtn" class="icon" title="Dark mode">◐</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro"><p class="kicker">DISCOVER · SHORTLIST · BUILD</p><h1>Find good repos. Keep the good ones.</h1><p>Search public GitHub projects without an account, save the ones worth revisiting and add your own notes. Your collection stays in this browser.</p></section>
+
+    <section class="panel">
+      <form id="searchForm" class="search-form">
+        <input id="query" class="search" type="search" required placeholder="Try: nextjs dashboard, github actions, prisma…" value="typescript dashboard" />
+        <select id="language" title="Language"><option value="">Any language</option><option>TypeScript</option><option>JavaScript</option><option>Python</option><option>Go</option><option>Rust</option><option>PHP</option></select>
+        <select id="sort" title="Sort"><option value="stars">Most stars</option><option value="updated">Recently updated</option><option value="forks">Most forks</option></select>
+        <button class="btn" type="submit">Search GitHub</button>
+      </form>
+      <p id="status" class="status">Showing a starter set of repositories. Run a search to query GitHub live.</p>
+    </section>
+
+    <div class="tabs"><button class="tab active" data-tab="discover">Discover</button><button class="tab" data-tab="saved">My collection <span id="savedCount">0</span></button></div>
+
+    <section id="view-discover" class="view active"><div id="results" class="grid"></div></section>
+
+    <section id="view-saved" class="view">
+      <div class="panel-head"><h2>Saved repositories</h2><input id="savedSearch" class="search" type="search" placeholder="Filter your collection…" /></div>
+      <div id="savedGrid" class="grid"></div>
+    </section>
+
+    <p class="tip">GitHub's unauthenticated search API allows about 10 requests per minute. If you hit the limit, wait a moment or search via <a href="https://github.com/search" target="_blank" rel="noopener noreferrer">GitHub directly ↗</a>.</p>
+  </main>
+
+  <footer>RepoVault · a local-first GitHub explorer · MIT licensed</footer>
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
